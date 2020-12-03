@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwindcss /ui;
+
+.layout {
+  /* overflow: hidden; */
+  min-height: 100vh;
+  background-color: white;
+}
+
+.page-body {
+  padding: 0 10rem 10rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.home-card {
+  margin: 1rem;
+}
+
+.welcome-collapsible .ant-collapse-header {
+  @apply text-lg text-gray-500 font-bold !important;
+}
+
+.welcome-collapsible .ant-collapse-item-active .ant-collapse-header {
+  @apply text-gray-900 !important;
+}
