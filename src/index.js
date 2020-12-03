@@ -5,11 +5,11 @@ import React from 'react'
 import { render } from 'react-dom'
 import $ from 'jquery'
 
-import Routes from './routes/Routes'
+import Routes from './routes'
 import './tailwind.generated.css'
 
 window.$ = window.jQuery = $
 
 const rootElement = document.getElementById('app')
 
-render(<Routes />,rootElement)
+render(<Routes />, rootElement)
