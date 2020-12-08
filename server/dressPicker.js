@@ -1,248 +1,138 @@
-const data = [
-  {
-    name: 'Shoe 1',
-    image: 'https://',
-    type: 'shoes',
-    kind: 'flat',
-    box: [2, 3],
-    color: 'neutral',
-    seasons: ['spring'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Shoe 2',
-    image: 'https://',
-    type: 'shoes',
-    kind: 'heel',
-    box: [2, 3],
-    color: 'neutral',
-    seasons: ['winter'],
-    occassion: 'business-formal'
-  },
-  {
-    name: 'Jacket',
-    image: 'https://',
-    type: 'jacket',
-    kind: null,
-    box: [1],
-    color: 'black',
-    seasons: ['spring'],
-    occassion: 'business-formal'
-  },
-  {
-    name: 'Top 1',
-    image: 'https://',
-    type: 'top',
-    kind: null,
-    box: [1],
-    color: 'white',
-    seasons: ['spring', 'winter'],
-    occassion: 'business-formal'
-  },
-  {
-    name: 'Top 2',
-    image: 'https://',
-    type: 'top',
-    kind: null,
-    box: [1],
-    color: 'black',
-    seasons: ['spring'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Top 3',
-    image: 'https://',
-    type: 'top',
-    kind: null,
-    box: [1],
-    color: 'black',
-    seasons: ['spring'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Pant 1',
-    image: 'https://',
-    type: 'pant',
-    kind: null,
-    box: [2],
-    color: 'black',
-    seasons: ['spring'],
-    occassion: 'business-formal'
-  },
-  {
-    name: 'Dress 1',
-    image: 'https://',
-    type: 'dress',
-    kind: null,
-    box: [2],
-    color: 'purple',
-    seasons: ['spring'],
-    occassion: 'business-formal'
-  },
-  {
-    name: 'Jumpsuit 1',
-    image: 'https://',
-    type: 'jumpsuit',
-    kind: null,
-    box: [1],
-    color: 'red',
-    seasons: ['winter'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Romper 1',
-    image: 'https://',
-    type: 'romper',
-    kind: null,
-    box: [1],
-    color: 'red',
-    seasons: ['winter'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Skirt 1',
-    image: 'https://',
-    type: 'skirt',
-    kind: null,
-    box: [2],
-    color: 'warm',
-    seasons: ['winter'],
-    occassion: 'business-formal'
-  },
-  {
-    name: 'Necklace 1',
-    image: 'https://',
-    type: 'accessory',
-    kind: 'necklace',
-    box: [4, 5, 6],
-    color: null,
-    seasons: ['summer'],
-    occassion: 'business-formal'
-  },
-  {
-    name: 'Skirt 1',
-    image: 'https://',
-    type: 'accessory',
-    kind: 'earring',
-    box: [4, 5, 6],
-    color: null,
-    seasons: ['summer'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Short 1',
-    image: 'https://',
-    type: 'shorts',
-    kind: null,
-    box: [2, 3],
-    color: null,
-    seasons: ['summer'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Pant n',
-    image: 'https://',
-    type: 'pant',
-    kind: null,
-    box: [2, 3],
-    color: null,
-    seasons: ['summer'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Short 2',
-    image: 'https://',
-    type: 'shorts',
-    kind: null,
-    box: [2, 3],
-    color: null,
-    seasons: ['summer'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Bag 1',
-    image: 'https://',
-    type: 'accessory',
-    kind: 'bag',
-    box: [4, 5, 6],
-    color: 'warm',
-    seasons: ['summer'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Scarves 1',
-    image: 'https://',
-    type: 'accessory',
-    kind: 'scarves',
-    box: [4, 5, 6],
-    color: 'warm',
-    seasons: ['summer'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Dress n',
-    image: 'https://',
-    type: 'dress',
-    kind: null,
-    box: [4, 5, 6],
-    color: 'warm',
-    seasons: ['summer'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Dress c',
-    image: 'https://',
-    type: 'dress',
-    kind: null,
-    box: [4, 5, 6],
-    color: 'warm',
-    seasons: ['summer'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Dress d',
-    image: 'https://',
-    type: 'dress',
-    kind: null,
-    box: [4, 5, 6],
-    color: 'warm',
-    seasons: ['summer'],
-    occassion: 'business-casual'
-  },
-  {
-    name: 'Dress e',
-    image: 'https://',
-    type: 'dress',
-    kind: null,
-    box: [4, 5, 6],
-    color: 'warm',
-    seasons: ['summer'],
-    occassion: 'business-casual'
-  }
-]
-
+/* eslint-disable space-before-function-paren */
 class DressPicker {
-  constructor() {
-    this.data = []
-    this.toWearRandom = []
-    this.box2Result = []
+  constructor(data) {
+    this.data = data
+    this.result = []
+
+    this.boxOneItem = null
+
+    this.boxOne = this.boxOne.bind(this)
+    this.boxTwo = this.boxTwo.bind(this)
+    this.boxThree = this.boxThree.bind(this)
+    this.boxFour = this.boxFour.bind(this)
+    this.boxFive = this.boxFive.bind(this)
+    this.boxSix = this.boxSix.bind(this)
+
+    this.randomSelector = this.randomSelector.bind(this)
 
     this.need = this.need.bind(this)
     this.season = this.season.bind(this)
     this.footwear = this.footwear.bind(this)
     this.toWear = this.toWear.bind(this)
+    this.palette = this.palette.bind(this)
+    this.jewellery = this.jewellery.bind(this)
+  }
+
+  need(tag) {
+    this.data = this.data.filter(item => item.tag === tag)
+    return this
+  }
+
+  season(season) {
+    this.data = this.data.filter(item => {
+      if (item.seasons) {
+        return item.seasons.includes(season)
+      }
+      return item
+    })
+    return this
+  }
+
+  footwear(kind) {
+    if (kind) {
+      this.data = this.data.filter(item => {
+        if (item.type === 'shoe') {
+          return item.kind === kind
+        }
+        return item
+      })
+    }
+    return this
+  }
+
+  /**
+   * @param  {...any} options
+   * @Description
+   * if options are more than one,
+   * dress, jumpsuit, romper do not go with any other additions
+   * Note that these top goes with any of pant, short and skirt,
+   * which are xor of each other, i.e (pant, short and skirt)
+   * can not be in options array at same time
+   */
+  toWear(...options) {
+    this.data = this.data.filter(item => {
+      switch (item.type) {
+        case 'top':
+          return options.includes('top')
+        case 'dress':
+          return options.includes('dress')
+        case 'jumpsuit':
+          return options.includes('jumpsuit')
+        case 'romper':
+          return options.includes('romper')
+        case 'pant':
+          return options.includes('pant')
+        case 'skirt':
+          return options.includes('skirt')
+        case 'short':
+          return options.includes('short')
+        case 'accessory':
+          switch (item.kind) {
+            case 'jacket':
+              return options.includes('jacket')
+            case 'hat':
+              return options.includes('hat')
+            case 'scarve':
+              return options.includes('scarve')
+            default:
+              return item
+          }
+        default:
+          return item
+      }
+    })
+    // cue: the first index of the options should be in box one
+    // [top,dress,jumpsuit,romper], but we have to confirm
+    if (['top', 'dress', 'jumpsuit', 'romper'].includes(options[0])) {
+      this.boxOneItem = options[0]
+    }
+    return this
+  }
+
+  palette(color) {
+    this.data = this.data.filter(item => {
+      if (item.color) {
+        return item.color === color
+      }
+      return item
+    })
+    return this
+  }
+
+  jewellery(...names) {
+    if (names.length > 0) {
+      this.data = this.data.filter(item => {
+        if (item.type === 'accessory' && item.kind === 'jewellery') {
+          return names.includes(item.name)
+        }
+        return item
+      })
+      return this
+    }
+    return this
   }
 
   /**
    * get one item of any of these types {Top,Dress,Jumpsuit,Romper}
    */
-  box1(dressType) {
-    const rex = new RegExp('^Top|Dress|Jumpsuit|Romper', 'i')
+  boxOne() {
+    const rex = new RegExp('^top|dress|jumpsuit|romper', 'i')
 
-    const filteredItem = dressType
-      ? data.filter(item => item.type === dressType)
-      : data.filter(item => rex.test(item.type))
-    this.toWearRandom = this.randomSelector(filteredItem)
+    const items = this.boxOneItem
+      ? this.data.filter(i => i.type === this.boxOneItem)
+      : this.data.filter(item => rex.test(item.type))
+    const filteredItem = this.randomSelector(items)
+    this.result.push(filteredItem)
     return this
   }
 
@@ -254,20 +144,17 @@ class DressPicker {
    * no Pants if box one has a Dress
    * no Shorts if box one has a Dress
    */
-  box2(box2Type) {
-    const rex = new RegExp('^pant|skirt|shorts|shoes', 'i')
-
-    // if what's in box one is a dress then a shoes goes into two
-    if (this.toWearRandom[0].type === 'dress' || box2Type === 'dress') {
-      const filteredShoes = data.filter(({ type }) => type === 'shoes')
-      this.box2Result = this.randomSelector(filteredShoes)
+  boxTwo() {
+    // if what's in box one is a dress, jumpsuit, romper then a shoe goes into two
+    if (this.result.length > 0 && ['dress', 'jumpsuit', 'romper'].includes(this.result[0].type)) {
+      const filteredShoes = this.data.filter(({ type }) => type === 'shoe')
+      this.result.push(this.randomSelector(filteredShoes))
       return this
     }
 
-    const filteredItem = box2Type
-      ? data.filter(item => item.type === box2Type)
-      : data.filter(item => rex.test(item.type))
-    this.box2Result = this.randomSelector(filteredItem)
+    // if pant, skirt, short exis in data then give them more piority then the shoe
+    const filteredItem = this.data.filter(({ type }) => ['pant', 'skirt', 'short'].includes(type))
+    this.result.push(this.randomSelector(filteredItem))
     return this
   }
 
@@ -275,19 +162,140 @@ class DressPicker {
    * get one item that has the type Shoes
    * only if there's no Shoes in box two
    */
-  box3(box3Type) {
-    const rex = new RegExp('^pant|skirt|shorts', 'i')
-
-    // if what's in box one is a dress then a shoes goes into two
-    if (this.box2Result[0].type !== 'shoes' && !box3Type) {
-      const filteredShoes = data.filter(({ type }) => type === 'shoes')
-      return this.randomSelector(filteredShoes)
+  boxThree() {
+    // if what's in box one is a dress then a shoe goes into two
+    if (this.result[1].type !== 'shoe') {
+      const filteredShoes = this.data.filter(({ type }) => type === 'shoe')
+      this.result.push(this.randomSelector(filteredShoes))
     }
+    return this
+  }
 
-    const filteredItem = box3Type
-      ? data.filter(item => box3Type === item.type)
-      : data.filter(item => rex.test(item.type))
-    return this.randomSelector(filteredItem)
+  boxFour() {
+    this.data.forEach(item => {
+      if (item.type === 'accessory') {
+        switch (item.kind) {
+          case 'jacket':
+            this.result.push(item)
+            break
+          case 'hat':
+            this.result.push(item)
+            break
+          case 'jewellery':
+            if (item.name === 'Earring') {
+              this.result.push(item)
+            }
+            if (item.name === 'Necklace') {
+              this.result.push(item)
+            }
+            if (item.name === 'Braclet') {
+              this.result.push(item)
+            }
+            break
+          case 'scarve':
+            this.result.push(item)
+            break
+          case 'belt':
+            this.result.push(item)
+            break
+          case 'bag':
+            this.result.push(item)
+            break
+          default:
+            break
+        }
+      }
+    })
+    return this
+  }
+
+  boxFive() {
+    this.data.forEach(item => {
+      if (item.type === 'accessory') {
+        const isHatExist = this.result.find(({ kind }) => kind === 'hat')
+        if (item.kind === 'hat' && !isHatExist) {
+          this.result.push(item)
+          return this
+        }
+        const isJewelleryExist = this.result.find(({ kind }) => kind === 'jewellery')
+        if (item.kind === 'jewellery' && !isJewelleryExist) {
+          const isEarringExist = this.result.find(({ name }) => name === 'Earring')
+          if (item.name === 'Earring' && !isEarringExist) {
+            this.result.push(item)
+          }
+          const isNecklaceExist = this.result.find(({ name }) => name === 'Necklace')
+          if (item.name === 'Necklace' && !isNecklaceExist) {
+            this.result.push(item)
+          }
+          return this
+        }
+        const isScarveExist = this.result.find(({ kind }) => kind === 'scarve')
+        if (item.kind === 'scarve' && !isScarveExist) {
+          this.result.push(item)
+          return this
+        }
+        if (item.kind === 'jewellery' && !isJewelleryExist) {
+          if (item.name === 'Braclet') {
+            this.result.push(item)
+          }
+          return this
+        }
+        const isBeltExist = this.result.find(({ kind }) => kind === 'belt')
+        if (item.kind === 'belt' && !isBeltExist) {
+          this.result.push(item)
+          return this
+        }
+        const isBagExist = this.result.find(({ kind }) => kind === 'bag')
+        if (item.kind === 'bag' && !isBagExist) {
+          this.result.push(item)
+          return this
+        }
+      }
+    })
+
+    return this
+  }
+
+  boxSix() {
+    this.data.forEach(item => {
+      if (item.type === 'accessory') {
+        const isJewelleryExist = this.result.find(({ kind }) => kind === 'jewellery')
+        if (item.kind === 'jewellery' && !isJewelleryExist) {
+          const isEarringExist = this.result.find(({ name }) => name === 'Earring')
+          if (item.name === 'Earring' && !isEarringExist) {
+            this.result.push(item)
+          }
+          const isNecklaceExist = this.result.find(({ name }) => name === 'Necklace')
+          if (item.name === 'Necklace' && !isNecklaceExist) {
+            this.result.push(item)
+          }
+          return this
+        }
+        const isScarveExist = this.result.find(({ kind }) => kind === 'scarve')
+        if (item.kind === 'scarve' && !isScarveExist) {
+          this.result.push(item)
+          return this
+        }
+        if (item.kind === 'jewellery' && !isJewelleryExist) {
+          if (item.name === 'Braclet') {
+            this.result.push(item)
+          }
+          return this
+        }
+        const isBeltExist = this.result.find(({ kind }) => kind === 'belt')
+        if (item.kind === 'belt' && !isBeltExist) {
+          this.result.push(item)
+          return this
+        }
+        const isBagExist = this.result.find(({ kind }) => kind === 'bag')
+        if (item.kind === 'bag' && !isBagExist) {
+          this.result.push(item)
+          return this
+        }
+      }
+    })
+
+    return this.result
   }
 
   /**
@@ -296,52 +304,17 @@ class DressPicker {
   randomSelector(filteredItem) {
     const randomerIndex = Math.floor(Math.random() * filteredItem.length)
 
-    return filteredItem.filter((item, i) => randomerIndex === i)
+    return filteredItem.filter((item, i) => randomerIndex === i)[0]
   }
 
-  /// ///////////////////////////////////////////////////////////////////////
-  need(occassion) {
-    this.data = data.filter(item => item.occassion === occassion)
-    return this
+  calculate() {
+    const data = this.boxOne().boxTwo().boxThree().boxFour().boxFive().boxSix()
+    this.result = []
+    return data
+    // return this.data
   }
-
-  season(season) {
-    this.data = this.data.filter(item => item.seasons.includes(season))
-    return this
-  }
-
-  footwear(kind) {
-    this.data = this.data.filter(item => {
-      if (item.type === 'shoes') {
-        return item.kind === kind
-      }
-      return item
-    })
-    return this
-  }
-
-  toWear(...options) {
-    this.data = this.data.filter(item => {
-      // const y = options.map((e) => {
-      //   if (item.type === e) {
-      //     return item
-      //   }
-      //   return item;
-      // });
-    })
-    return this
-  }
-
-  palette() {}
-  jewelry() {}
 }
 
-const dressPicker = new DressPicker()
+const dressPicker = new DressPicker(require('./data.json'))
 
-const dress = dressPicker
-  .need('business-formal')
-  .season('winter')
-  .footwear('heel')
-  .toWear('top', 'pant')
-
-module.exports = { data, dress, dressPicker }
+module.exports = { dressPicker }

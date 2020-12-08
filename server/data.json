@@ -1,0 +1,276 @@
+[
+    {
+        "name": "Shoe 1",
+        "image": "https://",
+        "type": "shoe",
+        "kind": "flat",
+        "color": "neutral",
+        "seasons": [
+            "spring"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Shoe 2",
+        "image": "https://",
+        "type": "shoe",
+        "kind": "heel",
+        "color": "neutral",
+        "seasons": [
+            "winter"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Jacket",
+        "image": "https://",
+        "type": "accessory",
+        "kind": "jacket",
+        "color": "neutral",
+        "seasons": [
+            "winter"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Top 1",
+        "image": "https://",
+        "type": "top",
+        "kind": null,
+        "color": "neutral",
+        "seasons": [
+            "spring",
+            "winter"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Top 2",
+        "image": "https://",
+        "type": "top",
+        "kind": null,
+        "color": "neutral",
+        "seasons": [
+            "winter"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Top 2",
+        "image": "https://",
+        "type": "top",
+        "kind": null,
+        "color": "black",
+        "seasons": [
+            "spring"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Top 3",
+        "image": "https://",
+        "type": "top",
+        "kind": null,
+        "color": "black",
+        "seasons": [
+            "spring"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Pant 1",
+        "image": "https://",
+        "type": "pant",
+        "kind": null,
+        "color": "neutral",
+        "seasons": [
+            "spring",
+            "winter"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Dress 1",
+        "image": "https://",
+        "type": "dress",
+        "kind": null,
+        "color": "purple",
+        "seasons": [
+            "spring"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Shoe 3",
+        "image": "https://",
+        "type": "shoe",
+        "kind": "heel",
+        "color": "neutral",
+        "seasons": [
+            "winter"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Jumpsuit 1",
+        "image": "https://",
+        "type": "jumpsuit",
+        "kind": null,
+        "color": "red",
+        "seasons": [
+            "winter"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Romper 1",
+        "image": "https://",
+        "type": "romper",
+        "kind": null,
+        "color": "red",
+        "seasons": [
+            "summer"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Skirt 1",
+        "image": "https://",
+        "type": "skirt",
+        "kind": null,
+        "color": "warm",
+        "seasons": [
+            "winter"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Necklace",
+        "image": "https://",
+        "type": "accessory",
+        "kind": "jewellery",
+        "color": null,
+        "seasons": null,
+        "tag": "business-formal"
+    },
+    {
+        "name": "Earring",
+        "image": "https://",
+        "type": "accessory",
+        "kind": "jewellery",
+        "color": null,
+        "seasons": null,
+        "tag": "business-formal"
+    },
+    {
+        "name": "Short 1",
+        "image": "https://",
+        "type": "shorts",
+        "kind": null,
+        "color": null,
+        "seasons": [
+            "summer"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Pant 2",
+        "image": "https://",
+        "type": "pant",
+        "kind": null,
+        "color": "neutral",
+        "seasons": [
+            "summer"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Short 2",
+        "image": "https://",
+        "type": "shorts",
+        "kind": null,
+        "color": null,
+        "seasons": [
+            "summer"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Bag 1",
+        "image": "https://",
+        "type": "accessory",
+        "kind": "bag",
+        "color": "warm",
+        "seasons": [
+            "summer"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Pant 4",
+        "image": "https://",
+        "type": "pant",
+        "kind": null,
+        "color": "neutral",
+        "seasons": [
+            "spring",
+            "winter"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Scarves 1",
+        "image": "https://",
+        "type": "accessory",
+        "kind": "scarve",
+        "color": "warm",
+        "seasons": [
+            "summer"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Dress n",
+        "image": "https://",
+        "type": "dress",
+        "kind": null,
+        "color": "neutral",
+        "seasons": [
+            "winter"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Dress c",
+        "image": "https://",
+        "type": "dress",
+        "kind": null,
+        "color": "warm",
+        "seasons": [
+            "summer"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Dress d",
+        "image": "https://",
+        "type": "dress",
+        "kind": null,
+        "color": "warm",
+        "seasons": [
+            "summer"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Pant e",
+        "image": "https://",
+        "type": "pant",
+        "kind": null,
+        "color": "neutral",
+        "seasons": [
+            "summer"
+        ],
+        "tag": "business-formal"
+    }
+]
