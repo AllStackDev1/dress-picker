@@ -22,15 +22,64 @@
         "tag": "business-formal"
     },
     {
-        "name": "Jacket",
+        "name": "Hat",
         "image": "https://",
-        "type": "accessory",
-        "kind": "jacket",
+        "type": "extra",
+        "kind": "hat",
+        "priority": 2,
         "color": "neutral",
         "seasons": [
             "winter"
         ],
         "tag": "business-formal"
+    },
+    {
+        "name": "Jacket",
+        "image": "https://",
+        "type": "extra",
+        "kind": "jacket",
+        "priority": 1,
+        "color": "neutral",
+        "seasons": [
+            "winter"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Scarve 1",
+        "image": "https://",
+        "type": "extra",
+        "kind": "scarve",
+        "priority": 5,
+        "color": "warm",
+        "seasons": [
+            "summer"
+        ],
+        "tag": "business-casual"
+    },
+    {
+        "name": "Scarve 2",
+        "image": "https://",
+        "type": "extra",
+        "kind": "scarve",
+        "priority": 5,
+        "color": "warm",
+        "seasons": [
+            "winter"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Belt 1",
+        "image": "https://",
+        "type": "extra",
+        "kind": "belt",
+        "priority": 7,
+        "color": "warm",
+        "seasons": [
+            "summer"
+        ],
+        "tag": "business-casual"
     },
     {
         "name": "Top 1",
@@ -45,7 +94,7 @@
         "tag": "business-formal"
     },
     {
-        "name": "Top 2",
+        "name": "Top 5",
         "image": "https://",
         "type": "top",
         "kind": null,
@@ -148,7 +197,8 @@
         "name": "Necklace",
         "image": "https://",
         "type": "accessory",
-        "kind": "jewellery",
+        "kind": "necklace",
+        "priority": 4,
         "color": null,
         "seasons": null,
         "tag": "business-formal"
@@ -157,7 +207,8 @@
         "name": "Earring",
         "image": "https://",
         "type": "accessory",
-        "kind": "jewellery",
+        "kind": "earring",
+        "priority": 3,
         "color": null,
         "seasons": null,
         "tag": "business-formal"
@@ -200,6 +251,7 @@
         "image": "https://",
         "type": "accessory",
         "kind": "bag",
+        "priority": 8,
         "color": "warm",
         "seasons": [
             "summer"
@@ -217,17 +269,6 @@
             "winter"
         ],
         "tag": "business-formal"
-    },
-    {
-        "name": "Scarves 1",
-        "image": "https://",
-        "type": "accessory",
-        "kind": "scarve",
-        "color": "warm",
-        "seasons": [
-            "summer"
-        ],
-        "tag": "business-casual"
     },
     {
         "name": "Dress n",

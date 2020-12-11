@@ -1,10 +1,12 @@
 /* eslint-disable space-before-function-paren */
+const _ = require('lodash')
 class DressPicker {
   constructor(data) {
     this.data = data
     this.result = []
 
     this.boxOneItem = null
+    this.allExtraAndAccessory = []
 
     this.boxOne = this.boxOne.bind(this)
     this.boxTwo = this.boxTwo.bind(this)
@@ -15,19 +17,25 @@ class DressPicker {
 
     this.randomSelector = this.randomSelector.bind(this)
 
-    this.need = this.need.bind(this)
+    this.look = this.look.bind(this)
     this.season = this.season.bind(this)
     this.footwear = this.footwear.bind(this)
     this.toWear = this.toWear.bind(this)
     this.palette = this.palette.bind(this)
-    this.jewellery = this.jewellery.bind(this)
+    this.accessory = this.accessory.bind(this)
   }
 
-  need(tag) {
+  // All item has a particular look they give, such as formal, casual etc
+  // this method filter the data(wardrobe) collection to the speicfic
+  // look the user ask for.
+  look(tag) {
     this.data = this.data.filter(item => item.tag === tag)
     return this
   }
 
+  // Some of the item may have some season(weather) which they could be worn in
+  // such as winter/summer etc, this method filter out those that doesn't match the
+  // season the user ask for, but neglect those which doesn't have any season(null)
   season(season) {
     this.data = this.data.filter(item => {
       if (item.seasons) {
@@ -38,6 +46,7 @@ class DressPicker {
     return this
   }
 
+  // this method just determine the kind of shoe the user want to wear, heel or flat
   footwear(kind) {
     if (kind) {
       this.data = this.data.filter(item => {
@@ -52,12 +61,13 @@ class DressPicker {
 
   /**
    * @param  {...any} options
-   * @Description
-   * if options are more than one,
-   * dress, jumpsuit, romper do not go with any other additions
-   * Note that these top goes with any of pant, short and skirt,
-   * which are xor of each other, i.e (pant, short and skirt)
+   * @Rules
+   *  <- We assume that the options obey the rules ->
+   * dress, jumpsuit, and romper do not go with any other additions
+   * Note that top goes with any of pant, short and skirt -> which are xor of each other
    * can not be in options array at same time
+   * @Description
+   * This method tries to determine the sense of dressing the user wants.
    */
   toWear(...options) {
     this.data = this.data.filter(item => {
@@ -76,7 +86,7 @@ class DressPicker {
           return options.includes('skirt')
         case 'short':
           return options.includes('short')
-        case 'accessory':
+        case 'extra':
           switch (item.kind) {
             case 'jacket':
               return options.includes('jacket')
@@ -99,6 +109,8 @@ class DressPicker {
     return this
   }
 
+  // some of the items have color palette we filter the data to match
+  // those with that color only if they do have a color palette defined
   palette(color) {
     this.data = this.data.filter(item => {
       if (item.color) {
@@ -109,11 +121,13 @@ class DressPicker {
     return this
   }
 
-  jewellery(...names) {
-    if (names.length > 0) {
+  // This method job is to filter the data which has the type of accessory
+  // matching it to the kinds of accessory the user has passed
+  accessory(...kinds) {
+    if (kinds.length > 0) {
       this.data = this.data.filter(item => {
-        if (item.type === 'accessory' && item.kind === 'jewellery') {
-          return names.includes(item.name)
+        if (item.type === 'accessory') {
+          return kinds.includes(item.kind)
         }
         return item
       })
@@ -139,10 +153,8 @@ class DressPicker {
   /**
    * get one item that has the type Pant, Skirt, Shorts, Shoes
    * can only be one and can pick at random
-   *
-   * no Skirt
-   * no Pants if box one has a Dress
-   * no Shorts if box one has a Dress
+   * no Skirt, Pants, Shorts if box one has a
+   * type of any dress|jumpsuit|romper
    */
   boxTwo() {
     // if what's in box one is a dress, jumpsuit, romper then a shoe goes into two
@@ -171,127 +183,143 @@ class DressPicker {
     return this
   }
 
+  // This method pick all extra and accessory from the data.
+  // It sorts each item base on the item priority of box places.
+  // We then store this sorted data of extra and accessory in allExtraAndAccessory
+  // so that we can make use of it in box 5 and 6
+  // The items been pick, one of it will be randomly selected
   boxFour() {
-    this.data.forEach(item => {
-      if (item.type === 'accessory') {
-        switch (item.kind) {
-          case 'jacket':
-            this.result.push(item)
-            break
-          case 'hat':
-            this.result.push(item)
-            break
-          case 'jewellery':
-            if (item.name === 'Earring') {
-              this.result.push(item)
-            }
-            if (item.name === 'Necklace') {
-              this.result.push(item)
-            }
-            if (item.name === 'Braclet') {
-              this.result.push(item)
-            }
-            break
-          case 'scarve':
-            this.result.push(item)
-            break
-          case 'belt':
-            this.result.push(item)
-            break
-          case 'bag':
-            this.result.push(item)
-            break
-          default:
-            break
-        }
+    this.allExtraAndAccessory = this.data.filter(({ type }) =>
+      ['accessory', 'extra'].includes(type)
+    )
+
+    this.allExtraAndAccessory.sort((a, b) => (a.priority > b.priority ? 1 : -1))
+
+    this.allExtraAndAccessory.some(item => {
+      if (item.kind === 'jacket') {
+        const jackets = this.allExtraAndAccessory.filter(({ kind }) => kind === 'jacket')
+        this.result[3] = this.randomSelector(jackets)
+        return true
+      }
+      if (item.kind === 'hat') {
+        const hats = this.allExtraAndAccessory.filter(({ kind }) => kind === 'hat')
+        this.result[3] = this.randomSelector(hats)
+        return true
+      }
+      if (item.kind === 'earring') {
+        const earrings = this.allExtraAndAccessory.filter(({ kind }) => kind === 'earring')
+        this.result[3] = this.randomSelector(earrings)
+        return true
+      }
+      if (item.kind === 'necklace') {
+        const necklaces = this.allExtraAndAccessory.filter(({ kind }) => kind === 'necklace')
+        this.result[3] = this.randomSelector(necklaces)
+        return true
+      }
+      if (item.kind === 'scarve') {
+        const scarves = this.allExtraAndAccessory.filter(({ kind }) => kind === 'scarve')
+        this.result[3] = this.randomSelector(scarves)
+        return true
+      }
+      if (item.kind === 'braclet') {
+        const braclets = this.allExtraAndAccessory.filter(({ kind }) => kind === 'braclet')
+        this.result[3] = this.randomSelector(braclets)
+        return true
+      }
+      if (item.kind === 'belt') {
+        const belts = this.allExtraAndAccessory.filter(({ kind }) => kind === 'belt')
+        this.result[3] = this.randomSelector(belts)
+        return true
+      }
+      if (item.kind === 'bag') {
+        const bags = this.allExtraAndAccessory.filter(({ kind }) => kind === 'bag')
+        this.result[3] = this.randomSelector(bags)
+        return true
       }
     })
+
     return this
   }
 
+  // Box five does not consider jacket bcos it priority places it at
+  // box 4 if it exist
+  // We repeact some of what we did in box four.
   boxFive() {
-    this.data.forEach(item => {
-      if (item.type === 'accessory') {
-        const isHatExist = this.result.find(({ kind }) => kind === 'hat')
-        if (item.kind === 'hat' && !isHatExist) {
-          this.result.push(item)
-          return this
-        }
-        const isJewelleryExist = this.result.find(({ kind }) => kind === 'jewellery')
-        if (item.kind === 'jewellery' && !isJewelleryExist) {
-          const isEarringExist = this.result.find(({ name }) => name === 'Earring')
-          if (item.name === 'Earring' && !isEarringExist) {
-            this.result.push(item)
-          }
-          const isNecklaceExist = this.result.find(({ name }) => name === 'Necklace')
-          if (item.name === 'Necklace' && !isNecklaceExist) {
-            this.result.push(item)
-          }
-          return this
-        }
-        const isScarveExist = this.result.find(({ kind }) => kind === 'scarve')
-        if (item.kind === 'scarve' && !isScarveExist) {
-          this.result.push(item)
-          return this
-        }
-        if (item.kind === 'jewellery' && !isJewelleryExist) {
-          if (item.name === 'Braclet') {
-            this.result.push(item)
-          }
-          return this
-        }
-        const isBeltExist = this.result.find(({ kind }) => kind === 'belt')
-        if (item.kind === 'belt' && !isBeltExist) {
-          this.result.push(item)
-          return this
-        }
-        const isBagExist = this.result.find(({ kind }) => kind === 'bag')
-        if (item.kind === 'bag' && !isBagExist) {
-          this.result.push(item)
-          return this
-        }
+    this.allExtraAndAccessory.some(item => {
+      if (item.kind === 'hat') {
+        const hats = this.allExtraAndAccessory.filter(({ kind }) => kind === 'hat')
+        this.result[4] = this.randomSelector(hats)
+        return true
+      }
+      if (item.kind === 'earring') {
+        const earrings = this.allExtraAndAccessory.filter(({ kind }) => kind === 'earring')
+        this.result[4] = this.randomSelector(earrings)
+        return true
+      }
+      if (item.kind === 'necklace') {
+        const necklaces = this.allExtraAndAccessory.filter(({ kind }) => kind === 'necklace')
+        this.result[4] = this.randomSelector(necklaces)
+        return true
+      }
+      if (item.kind === 'scarve') {
+        const scarves = this.allExtraAndAccessory.filter(({ kind }) => kind === 'scarve')
+        this.result[4] = this.randomSelector(scarves)
+        return true
+      }
+      if (item.kind === 'braclet') {
+        const braclets = this.allExtraAndAccessory.filter(({ kind }) => kind === 'braclet')
+        this.result[4] = this.randomSelector(braclets)
+        return true
+      }
+      if (item.kind === 'belt') {
+        const belts = this.allExtraAndAccessory.filter(({ kind }) => kind === 'belt')
+        this.result[4] = this.randomSelector(belts)
+        return true
+      }
+      if (item.kind === 'bag') {
+        const bags = this.allExtraAndAccessory.filter(({ kind }) => kind === 'bag')
+        this.result[4] = this.randomSelector(bags)
+        return true
       }
     })
 
     return this
   }
 
+  // Box six does not consider jacket and hat bcos it priority places t
+  // them at box 4 and 4/5 repectively if they exist
+  // We repeact some of what we did in box four.
   boxSix() {
-    this.data.forEach(item => {
-      if (item.type === 'accessory') {
-        const isJewelleryExist = this.result.find(({ kind }) => kind === 'jewellery')
-        if (item.kind === 'jewellery' && !isJewelleryExist) {
-          const isEarringExist = this.result.find(({ name }) => name === 'Earring')
-          if (item.name === 'Earring' && !isEarringExist) {
-            this.result.push(item)
-          }
-          const isNecklaceExist = this.result.find(({ name }) => name === 'Necklace')
-          if (item.name === 'Necklace' && !isNecklaceExist) {
-            this.result.push(item)
-          }
-          return this
-        }
-        const isScarveExist = this.result.find(({ kind }) => kind === 'scarve')
-        if (item.kind === 'scarve' && !isScarveExist) {
-          this.result.push(item)
-          return this
-        }
-        if (item.kind === 'jewellery' && !isJewelleryExist) {
-          if (item.name === 'Braclet') {
-            this.result.push(item)
-          }
-          return this
-        }
-        const isBeltExist = this.result.find(({ kind }) => kind === 'belt')
-        if (item.kind === 'belt' && !isBeltExist) {
-          this.result.push(item)
-          return this
-        }
-        const isBagExist = this.result.find(({ kind }) => kind === 'bag')
-        if (item.kind === 'bag' && !isBagExist) {
-          this.result.push(item)
-          return this
-        }
+    this.allExtraAndAccessory.some(item => {
+      if (item.kind === 'earring') {
+        const earrings = this.allExtraAndAccessory.filter(({ kind }) => kind === 'earring')
+        this.result[5] = this.randomSelector(earrings)
+        return true
+      }
+      if (item.kind === 'necklace') {
+        const necklaces = this.allExtraAndAccessory.filter(({ kind }) => kind === 'necklace')
+        this.result[5] = this.randomSelector(necklaces)
+        return true
+      }
+      if (item.kind === 'scarve') {
+        const scarves = this.allExtraAndAccessory.filter(({ kind }) => kind === 'scarve')
+        this.result[5] = this.randomSelector(scarves)
+        return true
+      }
+      if (item.kind === 'braclet') {
+        const braclets = this.allExtraAndAccessory.filter(({ kind }) => kind === 'braclet')
+        this.result[5] = this.randomSelector(braclets)
+        return true
+      }
+      if (item.kind === 'belt') {
+        const belts = this.allExtraAndAccessory.filter(({ kind }) => kind === 'belt')
+        this.result[5] = this.randomSelector(belts)
+        return true
+      }
+      if (item.kind === 'bag') {
+        const bags = this.allExtraAndAccessory.filter(({ kind }) => kind === 'bag')
+        this.result[5] = this.randomSelector(bags)
+        return true
       }
     })
 
@@ -307,11 +335,13 @@ class DressPicker {
     return filteredItem.filter((item, i) => randomerIndex === i)[0]
   }
 
+  // call all the box methods in a chain to add randomly selected item base
+  // on our filter data to each repective box frame
   calculate() {
     const data = this.boxOne().boxTwo().boxThree().boxFour().boxFive().boxSix()
+    // clear previous result
     this.result = []
     return data
-    // return this.data
   }
 }
 
