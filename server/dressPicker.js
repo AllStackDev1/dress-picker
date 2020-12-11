@@ -1,5 +1,4 @@
 /* eslint-disable space-before-function-paren */
-const _ = require('lodash')
 class DressPicker {
   constructor(data) {
     this.data = data

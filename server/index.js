@@ -24,7 +24,7 @@ http
         'business-formal',
         'winter',
         'heel',
-        ['dress', 'pant', 'jacket', 'hat'],
+        ['top', 'pant', 'jacket', 'hat'],
         'neutral',
         ['earring', 'necklace']
       )
@@ -37,6 +37,7 @@ http
       res.setHeader('Content-Type', 'application/json')
       res.end(JSON.stringify(dress))
     }
+
     if (req.url === '/') {
       res.setHeader('Content-Type', 'application/json')
       res.end(JSON.stringify({ active: true }))
