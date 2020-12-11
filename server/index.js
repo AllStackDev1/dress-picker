@@ -19,15 +19,27 @@ const userSelection = (look, season, footwear, toWear, palette, accessory) => {
 // create a server object:
 http
   .createServer(function (req, res) {
-    const dress = userSelection(
-      'business-formal',
-      'winter',
-      'heel',
-      ['top', 'pant', 'jacket', 'hat'],
-      'neutral',
-      ['earring', 'necklace']
-    )
-    res.setHeader('Content-Type', 'application/json')
-    res.end(JSON.stringify(dress))
+    if (req.url === '/user-selection') {
+      const dress = userSelection(
+        'business-formal',
+        'winter',
+        'heel',
+        ['dress', 'pant', 'jacket', 'hat'],
+        'neutral',
+        ['earring', 'necklace']
+      )
+      res.setHeader('Content-Type', 'application/json')
+      res.end(JSON.stringify(dress))
+    }
+
+    if (req.url === '/random-selection') {
+      const dress = random()
+      res.setHeader('Content-Type', 'application/json')
+      res.end(JSON.stringify(dress))
+    }
+    if (req.url === '/') {
+      res.setHeader('Content-Type', 'application/json')
+      res.end(JSON.stringify({ active: true }))
+    }
   })
   .listen(8080)
