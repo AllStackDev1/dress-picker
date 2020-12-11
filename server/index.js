@@ -1,18 +1,32 @@
 var http = require('http')
 var { dressPicker } = require('./dressPicker')
 
+const random = () => {
+  return dressPicker.calculate()
+}
+
+const userSelection = (look, season, footwear, toWear, palette, accessory) => {
+  return dressPicker
+    .look(look)
+    .season(season)
+    .footwear(footwear)
+    .toWear(...toWear)
+    .palette(palette)
+    .accessory(...accessory)
+    .calculate()
+}
+
 // create a server object:
 http
   .createServer(function (req, res) {
-    const dress = dressPicker
-      // .look('business-formal')
-      // .season('winter')
-      // .footwear('heel')
-      // .toWear('top', 'pant', 'jacket', 'hat')
-      // .palette('neutral')
-      // .accessory('earring', 'necklace')
-      .calculate()
-
+    const dress = userSelection(
+      'business-formal',
+      'winter',
+      'heel',
+      ['top', 'pant', 'jacket', 'hat'],
+      'neutral',
+      ['earring', 'necklace']
+    )
     res.setHeader('Content-Type', 'application/json')
     res.end(JSON.stringify(dress))
   })

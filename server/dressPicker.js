@@ -7,11 +7,6 @@ class DressPicker {
 
     this.boxOneItem = null
     this.allExtraAndAccessory = []
-    this.auto = {
-      color: 'red',
-      seasons: ['winter'],
-      tag: 'business-casual'
-    }
 
     this.boxOne = this.boxOne.bind(this)
     this.boxTwo = this.boxTwo.bind(this)
@@ -152,10 +147,8 @@ class DressPicker {
       : this.data.filter(item => rex.test(item.type))
     const filteredItem = this.randomSelector(items)
 
-    if (!this.boxOneItem) {
-      this.look(filteredItem.tag)
-      // .season(this.randomSelector(filteredItem.seasons))
-      // .palette(filteredItem.color)
+    if (!this.boxOneItem && filteredItem) {
+      this.look(filteredItem.tag).season(filteredItem.seasons[0]).palette(filteredItem.color)
     }
     this.result.push(filteredItem)
     return this
@@ -258,7 +251,12 @@ class DressPicker {
   boxFive() {
     this.allExtraAndAccessory.some(item => {
       if (item.kind === 'hat') {
-        const isHatExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isHatExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isHatExist) {
           const hats = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
           this.result[4] = this.randomSelector(hats)
@@ -266,7 +264,12 @@ class DressPicker {
         }
       }
       if (item.kind === 'earring') {
-        const isEarringExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isEarringExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isEarringExist) {
           const earrings = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
           this.result[4] = this.randomSelector(earrings)
@@ -274,7 +277,12 @@ class DressPicker {
         }
       }
       if (item.kind === 'necklace') {
-        const isNecklaceExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isNecklaceExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isNecklaceExist) {
           const necklaces = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
           this.result[4] = this.randomSelector(necklaces)
@@ -282,7 +290,12 @@ class DressPicker {
         }
       }
       if (item.kind === 'scarve') {
-        const isScarveExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isScarveExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isScarveExist) {
           const scarves = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
           this.result[4] = this.randomSelector(scarves)
@@ -290,7 +303,12 @@ class DressPicker {
         }
       }
       if (item.kind === 'braclet') {
-        const isBracletsExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isBracletsExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isBracletsExist) {
           const braclets = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
           this.result[4] = this.randomSelector(braclets)
@@ -298,7 +316,12 @@ class DressPicker {
         }
       }
       if (item.kind === 'belt') {
-        const isBeltExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isBeltExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isBeltExist) {
           const belts = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
           this.result[4] = this.randomSelector(belts)
@@ -306,7 +329,12 @@ class DressPicker {
         }
       }
       if (item.kind === 'bag') {
-        const isBagExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isBagExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isBagExist) {
           const bags = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
           this.result[4] = this.randomSelector(bags)
@@ -324,55 +352,84 @@ class DressPicker {
   boxSix() {
     this.allExtraAndAccessory.some(item => {
       if (item.kind === 'earring') {
-        const isEarringExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isEarringExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isEarringExist) {
           const earrings = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
-          this.result[4] = this.randomSelector(earrings)
+          this.result[5] = this.randomSelector(earrings)
           return true
         }
       }
       if (item.kind === 'necklace') {
-        const isNecklaceExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isNecklaceExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isNecklaceExist) {
           const necklaces = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
-          this.result[4] = this.randomSelector(necklaces)
+          this.result[5] = this.randomSelector(necklaces)
           return true
         }
       }
       if (item.kind === 'scarve') {
-        const isScarveExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isScarveExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isScarveExist) {
           const scarves = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
-          this.result[4] = this.randomSelector(scarves)
+          this.result[5] = this.randomSelector(scarves)
           return true
         }
       }
       if (item.kind === 'braclet') {
-        const isBracletsExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isBracletsExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isBracletsExist) {
           const braclets = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
-          this.result[4] = this.randomSelector(braclets)
+          this.result[5] = this.randomSelector(braclets)
           return true
         }
       }
       if (item.kind === 'belt') {
-        const isBeltExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isBeltExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isBeltExist) {
           const belts = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
-          this.result[4] = this.randomSelector(belts)
+          this.result[5] = this.randomSelector(belts)
           return true
         }
       }
       if (item.kind === 'bag') {
-        const isBagExist = this.result.filter(i => i.kind === item.kind)[0]
+        const isBagExist = this.result.filter(i => {
+          if (i) {
+            return i.kind === item.kind
+          }
+          return i
+        })[0]
         if (!isBagExist) {
           const bags = this.allExtraAndAccessory.filter(({ kind }) => kind === item.kind)
-          this.result[4] = this.randomSelector(bags)
+          this.result[5] = this.randomSelector(bags)
           return true
         }
       }
     })
-
     return this.result
   }
 

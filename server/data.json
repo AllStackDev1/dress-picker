@@ -34,6 +34,18 @@
         "tag": "business-formal"
     },
     {
+        "name": "Hat 4",
+        "image": "https://",
+        "type": "extra",
+        "kind": "hat",
+        "priority": 2,
+        "color": "neutral",
+        "seasons": [
+            "spring"
+        ],
+        "tag": "business-casual"
+    },
+    {
         "name": "Jacket",
         "image": "https://",
         "type": "extra",
@@ -44,6 +56,18 @@
             "winter"
         ],
         "tag": "business-formal"
+    },
+    {
+        "name": "Jacket 4",
+        "image": "https://",
+        "type": "extra",
+        "kind": "jacket",
+        "priority": 1,
+        "color": "neutral",
+        "seasons": [
+            "summer"
+        ],
+        "tag": "business-casual"
     },
     {
         "name": "Scarve 1",
@@ -88,7 +112,7 @@
         "kind": null,
         "color": "neutral",
         "seasons": [
-            "spring",
+            "summer",
             "winter"
         ],
         "tag": "business-formal"
@@ -156,9 +180,9 @@
         "kind": "heel",
         "color": "neutral",
         "seasons": [
-            "winter"
+            "summer"
         ],
-        "tag": "business-formal"
+        "tag": "business-casual"
     },
     {
         "name": "Jumpsuit 1",
@@ -278,6 +302,17 @@
         "color": "neutral",
         "seasons": [
             "winter"
+        ],
+        "tag": "business-formal"
+    },
+    {
+        "name": "Shoe 4",
+        "image": "https://",
+        "type": "shoe",
+        "kind": "heel",
+        "color": "neutral",
+        "seasons": [
+            "spring"
         ],
         "tag": "business-formal"
     },
